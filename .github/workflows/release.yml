@@ -17,7 +17,7 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v3.2.5
         id: release
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
           command: manifest
 
   build-preview:
@@ -46,7 +46,7 @@ jobs:
         with:
           ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
           # TODO: Figure out perms
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
 
       - name: Tag commit as preview
         run: |
@@ -64,7 +64,7 @@ jobs:
           gh release upload preview "./grain#grain-linux-x64" --clobber
           rm grain grain.tar
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
       - name: Fetch mac binary
         uses: actions/download-artifact@v3
@@ -77,7 +77,7 @@ jobs:
           gh release upload preview "./grain#grain-mac-x64" --clobber
           rm grain grain.tar
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
       - name: Fetch win binary
         uses: actions/download-artifact@v3
@@ -90,7 +90,7 @@ jobs:
           gh release upload preview "./grain.exe#grain-win-x64" --clobber
           rm grain.exe grain.tar
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
   prepare-artifacts:
     needs: [release-please]
