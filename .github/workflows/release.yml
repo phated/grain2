@@ -63,6 +63,8 @@ jobs:
           tar -xvf grain.tar
           gh release upload preview "./grain#grain-linux-x64" --clobber
           rm grain grain.tar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fetch mac binary
         uses: actions/download-artifact@v3
@@ -74,6 +76,8 @@ jobs:
           tar -xvf grain.tar
           gh release upload preview "./grain#grain-mac-x64" --clobber
           rm grain grain.tar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fetch win binary
         uses: actions/download-artifact@v3
@@ -85,6 +89,8 @@ jobs:
           tar -xvf grain.tar
           gh release upload preview "./grain.exe#grain-win-x64" --clobber
           rm grain.exe grain.tar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   prepare-artifacts:
     needs: [release-please]
