@@ -8,6 +8,7 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     outputs:
+      release-pr: ${{ steps.release.outputs.pr }}
       releases_created: ${{ steps.release.outputs.releases_created }}
       tag_name: ${{ steps.release.outputs.tag_name }}
       stdlib_tag_name: ${{ steps.release.outputs.stdlib--tag_name }}
@@ -16,8 +17,80 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v3.2.5
         id: release
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
           command: manifest
+
+  build-preview:
+    name: Build preview binaries
+    needs: [release-please]
+    if: ${{ needs.release-please.outputs.release-pr }}
+    uses: ./.github/workflows/build-js.yml
+    with:
+      os: ubuntu-latest
+      ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
+
+  test-preview:
+    name: Test preview binaries
+    needs: [release-please, build-preview]
+    uses: ./.github/workflows/test-pkg.yml
+    with:
+      ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
+
+  upload-preview:
+    name: Upload preview binaries
+    needs: [release-please, test-preview]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
+          # TODO: Figure out perms
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+
+      - name: Tag commit as preview
+        run: |
+          git tag preview -f
+          git push origin preview -f
+
+      - name: Fetch linux binary
+        uses: actions/download-artifact@v3
+        with:
+          name: grain-linux-x64
+
+      - name: Upload linux binary
+        run: |
+          tar -xvf grain.tar
+          gh release upload preview "./grain#grain-linux-x64" --clobber
+          rm grain grain.tar
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+
+      - name: Fetch mac binary
+        uses: actions/download-artifact@v3
+        with:
+          name: grain-mac-x64
+
+      - name: Upload mac binary
+        run: |
+          tar -xvf grain.tar
+          gh release upload preview "./grain#grain-mac-x64" --clobber
+          rm grain grain.tar
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+
+      - name: Fetch win binary
+        uses: actions/download-artifact@v3
+        with:
+          name: grain-win-x64
+
+      - name: Upload win binary
+        run: |
+          tar -xvf grain.tar
+          gh release upload preview "./grain.exe#grain-win-x64" --clobber
+          rm grain.exe grain.tar
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
   prepare-artifacts:
     needs: [release-please]
