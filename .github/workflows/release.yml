@@ -29,9 +29,36 @@ jobs:
       os: ubuntu-latest
       ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
 
+  generate-docs:
+    name: Generate documentation
+    needs: [release-please, build-preview]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
+          # TODO: Figure out perms
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+
+      - name: Fetch linux binary
+        uses: actions/download-artifact@v3
+        with:
+          name: grain-linux-x64
+
+      - name: Untar download
+        run: |
+          tar -xvf grain.tar
+
+      - name: Regenerate documentation
+        run: |
+          ./grain doc stdlib -o stdlib --current-version=$(./grain -v)
+          git commit -m 'chore(stdlib): Regenerate markdown documentation'
+          git push
+
   test-preview:
     name: Test preview binaries
-    needs: [release-please, build-preview]
+    needs: [release-please, generate-docs]
     uses: ./.github/workflows/test-pkg.yml
     with:
       ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
