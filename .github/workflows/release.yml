@@ -94,7 +94,7 @@ jobs:
   upload-npm-artifacts:
     needs: [release-please]
     if: ${{ needs.release-please.outputs.releases-created }}
-    name: Prepare artifacts
+    name: Upload release npm artifacts
     runs-on: ubuntu-latest
     outputs:
       stdlib-download-url: ${{ steps.stdlib-upload.outputs.browser_download_url }}
