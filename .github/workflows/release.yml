@@ -106,8 +106,9 @@ jobs:
       - name: Upload linux binary
         run: |
           tar -xvf grain.tar
-          gh release upload preview "./grain#grain-linux-x64" --clobber
-          rm grain grain.tar
+          mv grain grain-linux-x64
+          gh release upload preview "./grain-linux-x64" --clobber
+          rm grain-linux-x64 grain.tar
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
@@ -119,8 +120,9 @@ jobs:
       - name: Upload mac binary
         run: |
           tar -xvf grain.tar
-          gh release upload preview "./grain#grain-mac-x64" --clobber
-          rm grain grain.tar
+          mv grain grain-mac-x64
+          gh release upload preview "./grain-mac-x64" --clobber
+          rm grain-mac-x64 grain.tar
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
@@ -132,8 +134,9 @@ jobs:
       - name: Upload win binary
         run: |
           tar -xvf grain.tar
-          gh release upload preview "./grain.exe#grain-win-x64" --clobber
-          rm grain.exe grain.tar
+          mv grain.exe grain-win-x64.exe
+          gh release upload preview "./grain-win-x64.exe" --clobber
+          rm grain-win-x64.exe grain.tar
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
