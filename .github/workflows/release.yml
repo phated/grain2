@@ -41,6 +41,11 @@ jobs:
     needs: [release-please, build-preview]
     runs-on: ubuntu-latest
     steps:
+      - name: Setup bot user
+        run: |
+          git config --global user.email "bot@grain-lang.org"
+          git config --global user.name "Grain Bot"
+
       - name: Checkout project
         uses: actions/checkout@v3
         with:
@@ -76,6 +81,11 @@ jobs:
     needs: [release-please, test-preview]
     runs-on: ubuntu-latest
     steps:
+      - name: Setup bot user
+        run: |
+          git config --global user.email "bot@grain-lang.org"
+          git config --global user.name "Grain Bot"
+
       - name: Checkout project
         uses: actions/checkout@v3
         with:
