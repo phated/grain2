@@ -24,7 +24,7 @@ jobs:
         with:
           # Explicitly use GITHUB_TOKEN here so Release Please doesn't start a CI run that will fail
           # The correct CI run is triggered by the `generate-docs` job below when it pushes updated documentation
-          token: ${{ secrets.WORKFLOW_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           command: manifest
 
   build-preview:
@@ -44,7 +44,9 @@ jobs:
     with:
       ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
     secrets:
-      # TODO: Figure out perms
+      # This uses WORKFLOW_TOKEN because we want the push to trigger our `ci.yml` runs on the release PR
+      # and the GITHUB_TOKEN is blocked from triggering other workflows.
+      # See https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
       PUSH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
   test-preview:
@@ -64,8 +66,7 @@ jobs:
       tag: preview
       ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
     secrets:
-      # TODO: Figure out perms
-      UPLOAD_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+      UPLOAD_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-release:
     name: Build release binaries
@@ -93,8 +94,7 @@ jobs:
       tag: ${{ needs.release-please.outputs.tag-name }}
       ref: ${{ needs.release-please.outputs.tag-name }}
     secrets:
-      # TODO: Figure out perms
-      UPLOAD_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+      UPLOAD_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   upload-npm-artifacts:
     needs: [release-please]
