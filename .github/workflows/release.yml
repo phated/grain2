@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       release-pr: ${{ steps.release.outputs.pr }}
-      releases_created: ${{ steps.release.outputs.releases_created }}
-      tag_name: ${{ steps.release.outputs.tag_name }}
-      stdlib_tag_name: ${{ steps.release.outputs.stdlib--tag_name }}
-      js-runner_tag_name: ${{ steps.release.outputs.js-runner--tag_name }}
+      releases-created: ${{ steps.release.outputs.releases_created }}
+      tag-name: ${{ steps.release.outputs.tag_name }}
+      stdlib-tag-name: ${{ steps.release.outputs.stdlib--tag_name }}
+      js-runner-tag-name: ${{ steps.release.outputs.js-runner--tag_name }}
     steps:
       - uses: GoogleCloudPlatform/release-please-action@v3.2.5
         id: release
@@ -39,35 +39,12 @@ jobs:
   generate-docs:
     name: Generate documentation
     needs: [release-please, build-preview]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup bot user
-        run: |
-          git config --global user.email "bot@grain-lang.org"
-          git config --global user.name "Grain Bot"
-
-      - name: Checkout project
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
-          # TODO: Figure out perms
-          token: ${{ secrets.WORKFLOW_TOKEN }}
-
-      - name: Fetch linux binary
-        uses: actions/download-artifact@v3
-        with:
-          name: grain-linux-x64
-
-      - name: Untar download
-        run: |
-          tar -xvf grain.tar
-
-      - name: Regenerate documentation
-        run: |
-          ./grain doc stdlib -o stdlib --current-version=$(./grain -v)
-          git add stdlib
-          git commit -m 'chore(stdlib): Regenerate markdown documentation'
-          git push
+    uses: ./.github/workflows/generate-docs.yml
+    with:
+      ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
+    secrets:
+      # TODO: Figure out perms
+      PUSH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
   test-preview:
     name: Test preview binaries
@@ -79,151 +56,64 @@ jobs:
   upload-preview:
     name: Upload preview binaries
     needs: [release-please, test-preview]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup bot user
-        run: |
-          git config --global user.email "bot@grain-lang.org"
-          git config --global user.name "Grain Bot"
+    uses: ./.github/workflows/upload-binaries.yml
+    with:
+      tag: preview
+      ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
+    secrets:
+      # TODO: Figure out perms
+      UPLOAD_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
-      - name: Checkout project
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
-          # TODO: Figure out perms
-          token: ${{ secrets.WORKFLOW_TOKEN }}
-
-      - name: Tag commit as preview
-        run: |
-          git tag preview -f
-          git push origin preview -f
-
-      - name: Fetch linux binary
-        uses: actions/download-artifact@v3
-        with:
-          name: grain-linux-x64
-
-      - name: Upload linux binary
-        run: |
-          tar -xvf grain.tar
-          mv grain grain-linux-x64
-          gh release upload preview "./grain-linux-x64" --clobber
-          rm grain-linux-x64 grain.tar
-        env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
-
-      - name: Fetch mac binary
-        uses: actions/download-artifact@v3
-        with:
-          name: grain-mac-x64
-
-      - name: Upload mac binary
-        run: |
-          tar -xvf grain.tar
-          mv grain grain-mac-x64
-          gh release upload preview "./grain-mac-x64" --clobber
-          rm grain-mac-x64 grain.tar
-        env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
-
-      - name: Fetch win binary
-        uses: actions/download-artifact@v3
-        with:
-          name: grain-win-x64
-
-      - name: Upload win binary
-        run: |
-          tar -xvf grain.tar
-          mv grain.exe grain-win-x64.exe
-          gh release upload preview "./grain-win-x64.exe" --clobber
-          rm grain-win-x64.exe grain.tar
-        env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
-
-  prepare-artifacts:
+  build-release:
+    name: Build release binaries
     needs: [release-please]
-    if: ${{ needs.release-please.outputs.releases_created }}
+    if: ${{ needs.release-please.outputs.releases-created }}
+    uses: ./.github/workflows/build-js.yml
+    with:
+      os: ubuntu-latest
+      ref: ${{ needs.release-please.outputs.tag-name }}
+
+  test-release:
+    name: Test release binaries
+    needs: [release-please, build-release]
+    uses: ./.github/workflows/test-pkg.yml
+    with:
+      ref: ${{ needs.release-please.outputs.tag-name }}
+
+  upload-release:
+    name: Upload release binaries
+    needs: [release-please, test-release]
+    uses: ./.github/workflows/upload-binaries.yml
+    with:
+      tag: ${{ needs.release-please.outputs.tag-name }}
+      ref: ${{ needs.release-please.outputs.tag-name }}
+    secrets:
+      # TODO: Figure out perms
+      UPLOAD_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+
+  upload-npm-artifacts:
+    needs: [release-please]
+    if: ${{ needs.release-please.outputs.releases-created }}
     name: Prepare artifacts
     runs-on: ubuntu-latest
     outputs:
-      stdlib_download_url: ${{ steps.stdlib-upload.outputs.browser_download_url }}
-      js-runner_download_url: ${{ steps.js-runner-upload.outputs.browser_download_url }}
+      stdlib-download-url: ${{ steps.stdlib-upload.outputs.browser_download_url }}
+      js-runner-download-url: ${{ steps.js-runner-upload.outputs.browser_download_url }}
     steps:
       - name: Checkout project
         uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.release-please.outputs.tag-name }}
 
       # Many of these steps are the same as building the compiler for tests
       - name: Setup Node.js
-        uses: actions/setup-node@v3.1.1
+        uses: actions/setup-node@v3.6.0
         with:
           node-version: "16"
           check-latest: true
           cache: "npm"
 
-      - name: Setup environment
-        run: |
-          npm install -g shx
-
-      - name: Set up JS runner and CLI
-        run: |
-          npm ci
-
-      - name: Esy setup
-        run: |
-          npm run compiler prepare
-
-      - name: Esy cache
-        id: esy-cache
-        uses: actions/cache@v2
-        with:
-          path: compiler/_export
-          key: ${{ runner.os }}-esy-${{ hashFiles('compiler/esy.lock/index.json') }}
-
-      - name: Import esy cache
-        if: steps.esy-cache.outputs.cache-hit == 'true'
-        # Don't crash the run if esy cache import fails - mostly happens on Windows
-        continue-on-error: true
-        run: |
-          npm run compiler import-dependencies
-          shx rm -rf compiler/_export
-
-      # Don't build grainc.exe, only the JS builds
-      # TODO(#589): Actually build the exe's these once users can install them locally
-      - name: Build compiler
-        run: |
-          npm run compiler build:js
-
-      # This will log a warning because we removed the grainc.exe file
-      - name: Build Binaries
-        run: |
-          npm run cli build-pkg -- --target=win-x64,mac-x64,linux-x64
-
-      - name: Upload Binary (Windows)
-        uses: grain-lang/upload-release-action@v3.0.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./pkg/grain-win.exe
-          asset_name: grain-win-x64.exe
-          tag: ${{ needs.release-please.outputs.tag_name }}
-
-      - name: Upload Binary (Mac)
-        uses: grain-lang/upload-release-action@v3.0.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./pkg/grain-macos
-          asset_name: grain-mac-x64
-          tag: ${{ needs.release-please.outputs.tag_name }}
-
-      - name: Upload Binary (Linux)
-        uses: grain-lang/upload-release-action@v3.0.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./pkg/grain-linux
-          asset_name: grain-linux-x64
-          tag: ${{ needs.release-please.outputs.tag_name }}
-
       - name: Pack stdlib
-        if: ${{ needs.release-please.outputs.releases_created }}
         working-directory: ./stdlib
         # Runs `npm pack` and assigns the filename to an env var we can use later
         # `sed` is used to workaround https://github.com/npm/cli/issues/3405
@@ -232,16 +122,14 @@ jobs:
 
       - name: Upload stdlib
         id: stdlib-upload
-        if: ${{ needs.release-please.outputs.releases_created }}
         uses: grain-lang/upload-release-action@v3.0.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           file: ./stdlib/${{ env.STDLIB_TAR }}
           asset_name: stdlib.tgz
-          tag: ${{ needs.release-please.outputs.stdlib_tag_name }}
+          tag: ${{ needs.release-please.outputs.stdlib-tag-name }}
 
       - name: Pack js-runner
-        if: ${{ needs.release-please.outputs.releases_created }}
         working-directory: ./js-runner
         # Runs `npm pack` and assigns the filename to an env var we can use later
         # `sed` is used to workaround https://github.com/npm/cli/issues/3405
@@ -250,17 +138,16 @@ jobs:
 
       - name: Upload js-runner
         id: js-runner-upload
-        if: ${{ needs.release-please.outputs.releases_created }}
         uses: grain-lang/upload-release-action@v3.0.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           file: ./js-runner/${{ env.RUNNER_TAR }}
           asset_name: js-runner.tgz
-          tag: ${{ needs.release-please.outputs.js-runner_tag_name }}
+          tag: ${{ needs.release-please.outputs.js-runner-tag-name }}
 
   dispatch-website:
-    needs: [release-please, prepare-artifacts]
-    if: ${{ needs.release-please.outputs.releases_created }}
+    needs: [release-please, upload-release, upload-npm-artifacts]
+    if: ${{ needs.release-please.outputs.releases-created }}
     name: Dispatch website release
     runs-on: ubuntu-latest
     steps:
@@ -270,11 +157,11 @@ jobs:
           token: ${{ secrets.WORKFLOW_TOKEN }}
           ref: master
           repo: grain-lang/grain-lang.org
-          tag_input: ${{ needs.release-please.outputs.tag_name }}
+          tag_input: ${{ needs.release-please.outputs.tag-name }}
 
   dispatch-homebrew:
-    needs: [release-please, prepare-artifacts]
-    if: ${{ needs.release-please.outputs.releases_created }}
+    needs: [release-please, upload-release, upload-npm-artifacts]
+    if: ${{ needs.release-please.outputs.releases-created }}
     name: Dispatch homebrew release
     runs-on: ubuntu-latest
     steps:
@@ -284,11 +171,11 @@ jobs:
           token: ${{ secrets.WORKFLOW_TOKEN }}
           ref: main
           repo: grain-lang/homebrew-tap
-          tag_input: ${{ needs.release-please.outputs.tag_name }}
+          tag_input: ${{ needs.release-please.outputs.tag-name }}
 
   dispatch-docker:
-    needs: [release-please, prepare-artifacts]
-    if: ${{ needs.release-please.outputs.releases_created }}
+    needs: [release-please]
+    if: ${{ needs.release-please.outputs.releases-created }}
     name: Dispatch Docker builds
     runs-on: ubuntu-latest
     steps:
@@ -298,40 +185,40 @@ jobs:
           token: ${{ secrets.WORKFLOW_TOKEN }}
           ref: main
           repo: grain-lang/grain
-          tag_input: ${{ needs.release-please.outputs.tag_name }}
+          tag_input: ${{ needs.release-please.outputs.tag-name }}
 
   npm-release-stdlib:
-    needs: [release-please, prepare-artifacts]
-    if: ${{ needs.release-please.outputs.releases_created }}
+    needs: [release-please, upload-npm-artifacts]
+    if: ${{ needs.release-please.outputs.releases-created }}
     name: Publish stdlib to npm registry
     runs-on: ubuntu-latest
     steps:
       - name: Setup NodeJS
-        uses: actions/setup-node@v3.1.1
+        uses: actions/setup-node@v3.6.0
         with:
           node-version: "16"
           registry-url: "https://registry.npmjs.org"
 
       - name: Publish to npm
         run: |
-          npm publish ${{ needs.prepare-artifacts.outputs.stdlib_download_url }}
+          npm publish ${{ needs.upload-npm-artifact.outputs.stdlib-download-url }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_RELEASE }}
 
   npm-release-js-runner:
-    needs: [release-please, prepare-artifacts]
-    if: ${{ needs.release-please.outputs.releases_created }}
+    needs: [release-please, upload-npm-artifacts]
+    if: ${{ needs.release-please.outputs.releases-created }}
     name: Publish js-runner to npm registry
     runs-on: ubuntu-latest
     steps:
       - name: Setup NodeJS
-        uses: actions/setup-node@v3.1.1
+        uses: actions/setup-node@v3.6.0
         with:
           node-version: "16"
           registry-url: "https://registry.npmjs.org"
 
       - name: Publish to npm
         run: |
-          npm publish ${{ needs.prepare-artifacts.outputs.js-runner_download_url }}
+          npm publish ${{ needs.upload-npm-artifact.outputs.js-runner-download-url }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_RELEASE }}
