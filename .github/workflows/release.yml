@@ -39,6 +39,7 @@ jobs:
   generate-docs:
     name: Generate documentation
     needs: [release-please, build-preview]
+    if: ${{ needs.release-please.outputs.release-pr }}
     uses: ./.github/workflows/generate-docs.yml
     with:
       ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
@@ -49,6 +50,7 @@ jobs:
   test-preview:
     name: Test preview binaries
     needs: [release-please, generate-docs]
+    if: ${{ needs.release-please.outputs.release-pr }}
     uses: ./.github/workflows/test-pkg.yml
     with:
       ref: ${{ fromJSON(needs.release-please.outputs.release-pr).headBranchName }}
@@ -56,6 +58,7 @@ jobs:
   upload-preview:
     name: Upload preview binaries
     needs: [release-please, test-preview]
+    if: ${{ needs.release-please.outputs.release-pr }}
     uses: ./.github/workflows/upload-binaries.yml
     with:
       tag: preview
@@ -76,6 +79,7 @@ jobs:
   test-release:
     name: Test release binaries
     needs: [release-please, build-release]
+    if: ${{ needs.release-please.outputs.releases-created }}
     uses: ./.github/workflows/test-pkg.yml
     with:
       ref: ${{ needs.release-please.outputs.tag-name }}
@@ -83,6 +87,7 @@ jobs:
   upload-release:
     name: Upload release binaries
     needs: [release-please, test-release]
+    if: ${{ needs.release-please.outputs.releases-created }}
     uses: ./.github/workflows/upload-binaries.yml
     with:
       tag: ${{ needs.release-please.outputs.tag-name }}
