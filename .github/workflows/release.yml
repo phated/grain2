@@ -24,7 +24,7 @@ jobs:
         with:
           # Explicitly use GITHUB_TOKEN here so Release Please doesn't start a CI run that will fail
           # The correct CI run is triggered by the `generate-docs` job below when it pushes updated documentation
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
           command: manifest
 
   build-preview:
