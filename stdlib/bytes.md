@@ -291,7 +291,7 @@ Returns:
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>`value` argument type changed to `Uint8`</td></tr>
+<tr><td><code>0.6.0</code></td><td>`value` argument type changed to `Uint8`</td></tr>
 </tbody>
 </table>
 </details>
@@ -331,7 +331,7 @@ Parameters:
 ### Bytes.**getInt8**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -377,7 +377,7 @@ Throws:
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>`value` argument type changed to `Int8`</td></tr>
+<tr><td><code>0.6.0</code></td><td>`value` argument type changed to `Int8`</td></tr>
 </tbody>
 </table>
 </details>
@@ -406,7 +406,7 @@ Throws:
 ### Bytes.**getUint8**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -446,7 +446,7 @@ Throws:
 ### Bytes.**setUint8**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -474,7 +474,7 @@ Throws:
 ### Bytes.**getInt16**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -520,7 +520,7 @@ Throws:
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>`value` argument type changed to `Int16`</td></tr>
+<tr><td><code>0.6.0</code></td><td>`value` argument type changed to `Int16`</td></tr>
 </tbody>
 </table>
 </details>
@@ -549,7 +549,7 @@ Throws:
 ### Bytes.**getUint16**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -589,7 +589,7 @@ Throws:
 ### Bytes.**setUint16**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -678,7 +678,7 @@ Throws:
 ### Bytes.**getUint32**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -711,7 +711,7 @@ Throws:
 ### Bytes.**setUint32**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -861,7 +861,7 @@ Throws:
 ### Bytes.**getUint64**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -894,7 +894,7 @@ Throws:
 ### Bytes.**setUint64**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 

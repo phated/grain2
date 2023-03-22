@@ -444,7 +444,7 @@ Parameters:
 ### Buffer.**getInt8**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -491,7 +491,7 @@ Throws:
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>`value` argument type changed to `Int8`</td></tr>
+<tr><td><code>0.6.0</code></td><td>`value` argument type changed to `Int8`</td></tr>
 </tbody>
 </table>
 </details>
@@ -527,7 +527,7 @@ Throws:
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>`value` argument type changed to `Int8`</td></tr>
+<tr><td><code>0.6.0</code></td><td>`value` argument type changed to `Int8`</td></tr>
 </tbody>
 </table>
 </details>
@@ -548,7 +548,7 @@ Parameters:
 ### Buffer.**getUint8**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -589,7 +589,7 @@ Throws:
 ### Buffer.**setUint8**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -618,7 +618,7 @@ Throws:
 ### Buffer.**addUint8**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -638,7 +638,7 @@ Parameters:
 ### Buffer.**getInt16**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -685,7 +685,7 @@ Throws:
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>`value` argument type changed to `Int16`</td></tr>
+<tr><td><code>0.6.0</code></td><td>`value` argument type changed to `Int16`</td></tr>
 </tbody>
 </table>
 </details>
@@ -721,7 +721,7 @@ Throws:
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>`value` argument type changed to `Int16`</td></tr>
+<tr><td><code>0.6.0</code></td><td>`value` argument type changed to `Int16`</td></tr>
 </tbody>
 </table>
 </details>
@@ -742,7 +742,7 @@ Parameters:
 ### Buffer.**getUint16**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -783,7 +783,7 @@ Throws:
 ### Buffer.**setUint16**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -812,7 +812,7 @@ Throws:
 ### Buffer.**addUint16**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -915,7 +915,7 @@ Parameters:
 ### Buffer.**getUint32**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -949,7 +949,7 @@ Throws:
 ### Buffer.**setUint32**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -978,7 +978,7 @@ Throws:
 ### Buffer.**addUint32**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -1164,7 +1164,7 @@ Parameters:
 ### Buffer.**getUint64**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -1198,7 +1198,7 @@ Throws:
 ### Buffer.**setUint64**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
@@ -1227,7 +1227,7 @@ Throws:
 ### Buffer.**addUint64**
 
 <details disabled>
-<summary tabindex="-1">Added in <code>next</code></summary>
+<summary tabindex="-1">Added in <code>0.6.0</code></summary>
 No other changes yet.
 </details>
 
