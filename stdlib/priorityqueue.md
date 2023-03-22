@@ -314,7 +314,7 @@ Returns:
 An immutable priority queue implementation.
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -344,7 +344,7 @@ Functions and constants included in the PriorityQueue.Immutable module.
 #### PriorityQueue.Immutable.**empty**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -364,7 +364,7 @@ An empty priority queue with the default `compare` comparator.
 #### PriorityQueue.Immutable.**make**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -409,7 +409,7 @@ PriorityQueue.Immutable.make((a, b) => String.length(b) - String.length(a)) // c
 #### PriorityQueue.Immutable.**size**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -441,7 +441,7 @@ Returns:
 #### PriorityQueue.Immutable.**isEmpty**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -473,7 +473,7 @@ Returns:
 #### PriorityQueue.Immutable.**push**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -506,7 +506,7 @@ Returns:
 #### PriorityQueue.Immutable.**peek**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -539,7 +539,7 @@ Returns:
 #### PriorityQueue.Immutable.**pop**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -573,7 +573,7 @@ Returns:
 #### PriorityQueue.Immutable.**drain**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -605,7 +605,7 @@ Returns:
 #### PriorityQueue.Immutable.**fromList**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -642,7 +642,7 @@ Returns:
 #### PriorityQueue.Immutable.**fromArray**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>

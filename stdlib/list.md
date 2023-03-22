@@ -771,7 +771,7 @@ Throws:
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>No longer throws if `count` outside list length bounds</td></tr>
+<tr><td><code>0.6.0</code></td><td>No longer throws if `count` outside list length bounds</td></tr>
 </tbody>
 </table>
 </details>

@@ -1,5 +1,110 @@
 # Changelog
 
+## [0.6.0](https://github.com/phated/grain2/compare/stdlib-v0.5.13...stdlib-v0.6.0) (2023-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **stdlib:** Use Array length as default end in `Array.slice` function ([#1762](https://github.com/phated/grain2/issues/1762))
+* **stdlib:** Use String length as default end in `String.slice` function ([#1748](https://github.com/phated/grain2/issues/1748))
+* Rework preopened directories ([#1656](https://github.com/phated/grain2/issues/1656))
+* **stdlib:** Group mutable/immutable data structures ([#1652](https://github.com/phated/grain2/issues/1652))
+* **compiler:** Optimize type metadata loading ([#1741](https://github.com/phated/grain2/issues/1741))
+* **compiler:** Labeled and default arguments ([#1623](https://github.com/phated/grain2/issues/1623))
+* **stdlib:** Replace bigint/number arithmetic functions with operators ([#1742](https://github.com/phated/grain2/issues/1742))
+* **stdlib:** Update Operator `uint` operator Names ([#1738](https://github.com/phated/grain2/issues/1738))
+* **stdlib:** Provide empty byte array from Bytes.make ([#1729](https://github.com/phated/grain2/issues/1729))
+* **stdlib:** Add optimization for `Number.pow(Rational, Int)` ([#1716](https://github.com/phated/grain2/issues/1716))
+* **compiler:** Custom box printing ([#1713](https://github.com/phated/grain2/issues/1713))
+* **stdlib:** Update Buffer/Bytes to use new integer types ([#1704](https://github.com/phated/grain2/issues/1704))
+* **compiler:** Require floats always have a digit on left & right of dot ([#1703](https://github.com/phated/grain2/issues/1703))
+* **compiler:** Remove 32-bit numbers from `Number` type ([#1683](https://github.com/phated/grain2/issues/1683))
+* **compiler:** Short integer values ([#1669](https://github.com/phated/grain2/issues/1669))
+* **compiler:** Supply primitive types via the compiler ([#1667](https://github.com/phated/grain2/issues/1667))
+* **stdlib:** Add `**` (pow) operator to Pervasives module ([#1690](https://github.com/phated/grain2/issues/1690))
+* **compiler:** Remove Exclusive/Inclusive Ranges, provide as record via compiler ([#1616](https://github.com/phated/grain2/issues/1616))
+* **stdlib:** Make queue and stack mutable & provide Immutable submodules ([#1479](https://github.com/phated/grain2/issues/1479))
+* **compiler:** Disallow multiple `provide`s of the same value ([#1689](https://github.com/phated/grain2/issues/1689))
+* **graindoc:** Only use original doc blocks when re-providing ([#1687](https://github.com/phated/grain2/issues/1687))
+* **graindoc:** Support docblocks on submodules ([#1684](https://github.com/phated/grain2/issues/1684))
+* **graindoc:** Remove section attribute ([#1681](https://github.com/phated/grain2/issues/1681))
+* **compiler:** Explicit abstract types ([#1680](https://github.com/phated/grain2/issues/1680))
+* **compiler:** Add Uint32 and Uint64 types ([#1531](https://github.com/phated/grain2/issues/1531))
+* **stdlib:** Remove `cons` and `empty` from Pervasives ([#1657](https://github.com/phated/grain2/issues/1657))
+* **stdlib:** Sys/File reading and writing operate on Bytes ([#1655](https://github.com/phated/grain2/issues/1655))
+* **compiler:** Make List a language-supplied type ([#1648](https://github.com/phated/grain2/issues/1648))
+* **stdlib:** Use correct casing for BigInt module name
+* **graindoc:** Replace module attribute with docblock on module header ([#1647](https://github.com/phated/grain2/issues/1647))
+* **compiler:** Module system ([#1584](https://github.com/phated/grain2/issues/1584))
+* **compiler:** Change Char internal representation ([#1622](https://github.com/phated/grain2/issues/1622))
+* **compiler:** Inline record constructors ([#1586](https://github.com/phated/grain2/issues/1586))
+* **stdlib:** Replace Number.nan & Number.infinity constants with keywords ([#1618](https://github.com/phated/grain2/issues/1618))
+* **compiler:** Remove support of single-argument tuples ([#1608](https://github.com/phated/grain2/issues/1608))
+* **stdlib:** `List.rotate` wraparound for count > length ([#1558](https://github.com/phated/grain2/issues/1558))
+* **compiler:** Include Option and Result as language-supplied types ([#1591](https://github.com/phated/grain2/issues/1591))
+* **stdlib:** Change array rotation direction ([#1552](https://github.com/phated/grain2/issues/1552))
+* **stdlib:** Support zipping arrays of different sizes ([#1402](https://github.com/phated/grain2/issues/1402))
+* **compiler:** Refactor enum constructors ([#1211](https://github.com/phated/grain2/issues/1211))
+
+### Features
+
+* Add Hex Exponent Decimals ([8a69eb3](https://github.com/phated/grain2/commit/8a69eb31e4e22e6148c42ecd0efb677f3fbb222c))
+* **compiler:** Add hex float syntax ([#1743](https://github.com/phated/grain2/issues/1743)) ([8a69eb3](https://github.com/phated/grain2/commit/8a69eb31e4e22e6148c42ecd0efb677f3fbb222c))
+* **compiler:** Add Uint32 and Uint64 types ([#1531](https://github.com/phated/grain2/issues/1531)) ([42ffdc4](https://github.com/phated/grain2/commit/42ffdc408096901696abb6e3fa862b65d3d7e2a2))
+* **compiler:** Change Char internal representation ([#1622](https://github.com/phated/grain2/issues/1622)) ([58c9a51](https://github.com/phated/grain2/commit/58c9a5145a6c1c53e280657e4e41f79f2662eb8a))
+* **compiler:** Custom box printing ([#1713](https://github.com/phated/grain2/issues/1713)) ([3c86e45](https://github.com/phated/grain2/commit/3c86e459235ad9bf0abbefb575021736ad45f310))
+* **compiler:** Explicit abstract types ([#1680](https://github.com/phated/grain2/issues/1680)) ([58cd224](https://github.com/phated/grain2/commit/58cd2247441f16cfc95b415ad272da7a37b82fb5))
+* **compiler:** Include Option and Result as language-supplied types ([#1591](https://github.com/phated/grain2/issues/1591)) ([bd5403f](https://github.com/phated/grain2/commit/bd5403f94f30366adc7d3307adc3c6c4fa5e1803))
+* **compiler:** Inline record constructors ([#1586](https://github.com/phated/grain2/issues/1586)) ([43082f5](https://github.com/phated/grain2/commit/43082f52692d90b1419b6b72ebe66406a0a01d99))
+* **compiler:** Labeled and default arguments ([#1623](https://github.com/phated/grain2/issues/1623)) ([28a38ac](https://github.com/phated/grain2/commit/28a38ac149d396cd034b6c53b0aa3eb478ed29ed))
+* **compiler:** Make List a language-supplied type ([#1648](https://github.com/phated/grain2/issues/1648)) ([2ee1328](https://github.com/phated/grain2/commit/2ee13282427718d8849a334d085a3f833037127b))
+* **compiler:** Module system ([#1584](https://github.com/phated/grain2/issues/1584)) ([752da69](https://github.com/phated/grain2/commit/752da69057b2b06a1415710d6da93fbb948e8185))
+* **compiler:** Rational number type ([#1603](https://github.com/phated/grain2/issues/1603)) ([350f850](https://github.com/phated/grain2/commit/350f8503c3e6976275aaa8ee4d8c02554e7c238a))
+* **compiler:** Refactor enum constructors ([#1211](https://github.com/phated/grain2/issues/1211)) ([8d465b7](https://github.com/phated/grain2/commit/8d465b7cd73d9549eeb89c7d52083d592ebd66fd))
+* **compiler:** Remove 32-bit numbers from `Number` type ([#1683](https://github.com/phated/grain2/issues/1683)) ([50bf8ee](https://github.com/phated/grain2/commit/50bf8ee39d017805091fe1ae7536621e956c03ce))
+* **compiler:** Remove Exclusive/Inclusive Ranges, provide as record via compiler ([#1616](https://github.com/phated/grain2/issues/1616)) ([49a399d](https://github.com/phated/grain2/commit/49a399dbcfc24957a3875ae094ad0a2c4b636a32))
+* **compiler:** Remove Pervasives' dependency on toString when types are elided ([#1664](https://github.com/phated/grain2/issues/1664)) ([f703476](https://github.com/phated/grain2/commit/f703476db8d376d68a1c50fece48f335f455a791))
+* **compiler:** Remove support of single-argument tuples ([#1608](https://github.com/phated/grain2/issues/1608)) ([509cd85](https://github.com/phated/grain2/commit/509cd85801eb165c0ce65347047a0380f2304b25))
+* **compiler:** Short integer values ([#1669](https://github.com/phated/grain2/issues/1669)) ([fc4670d](https://github.com/phated/grain2/commit/fc4670de13c46dfac3def1ca59d718ffb36aca1c))
+* **compiler:** Streamlined reference counting ([#1714](https://github.com/phated/grain2/issues/1714)) ([0711868](https://github.com/phated/grain2/commit/071186801ccf7f6dc3eef653382f6d82b8b23b6c))
+* **compiler:** Supply primitive types via the compiler ([#1667](https://github.com/phated/grain2/issues/1667)) ([b41feb7](https://github.com/phated/grain2/commit/b41feb73976d4ef3d9c17c31f0dbcfc22df32d9d))
+* Get RP to do something ([64246f8](https://github.com/phated/grain2/commit/64246f8f34a86bb0763bdf7a1611f6cd5b9e0669))
+* **graindoc:** Only use original doc blocks when re-providing ([#1687](https://github.com/phated/grain2/issues/1687)) ([97c7ce4](https://github.com/phated/grain2/commit/97c7ce4dfb7e4474358a62c3699dd3edc121c961))
+* **graindoc:** Replace module attribute with docblock on module header ([#1647](https://github.com/phated/grain2/issues/1647)) ([2ff9d9e](https://github.com/phated/grain2/commit/2ff9d9ec49c727778c6d0ee74219f746df8a11e2))
+* **graindoc:** Support docblocks on submodules ([#1684](https://github.com/phated/grain2/issues/1684)) ([bc13017](https://github.com/phated/grain2/commit/bc1301751c90380e53c0ca9048a928468245d13c))
+* Rework preopened directories ([#1656](https://github.com/phated/grain2/issues/1656)) ([7d3006d](https://github.com/phated/grain2/commit/7d3006d86d423a0bb03a600c6bf9726efc8394b9))
+* **stdlib:** `List.rotate` wraparound for count &gt; length ([#1558](https://github.com/phated/grain2/issues/1558)) ([6dd9680](https://github.com/phated/grain2/commit/6dd968009b5d700f2e31ed6f4b1074dbdc4299e7))
+* **stdlib:** Add `**` (pow) operator to Pervasives module ([#1690](https://github.com/phated/grain2/issues/1690)) ([b16b455](https://github.com/phated/grain2/commit/b16b4552952fd554657ac1b5bcc868dca0600476))
+* **stdlib:** Add optimization for `Number.pow(Rational, Int)` ([#1716](https://github.com/phated/grain2/issues/1716)) ([67bee5c](https://github.com/phated/grain2/commit/67bee5c0982d35f0d6a1350e002b7062a498afe7))
+* **stdlib:** Change array rotation direction ([#1552](https://github.com/phated/grain2/issues/1552)) ([bbe56ad](https://github.com/phated/grain2/commit/bbe56ade517bd685d52384d32aecb94d25d379f7))
+* **stdlib:** Make queue and stack mutable & provide Immutable submodules ([#1479](https://github.com/phated/grain2/issues/1479)) ([979a20c](https://github.com/phated/grain2/commit/979a20ce6b734b90bc38c11ee6a4534ea8e555b8))
+* **stdlib:** Provide empty byte array from Bytes.make ([#1729](https://github.com/phated/grain2/issues/1729)) ([fde3064](https://github.com/phated/grain2/commit/fde3064428fa2244e73932d5992ac722a26ebfe4))
+* **stdlib:** Remove parseInt dependency on Pervasives ([#1649](https://github.com/phated/grain2/issues/1649)) ([9408568](https://github.com/phated/grain2/commit/9408568a3457c2084afc22f958334e87a4183ccf))
+* **stdlib:** Support zipping arrays of different sizes ([#1402](https://github.com/phated/grain2/issues/1402)) ([b8ae3d6](https://github.com/phated/grain2/commit/b8ae3d69c98ada45bc592fb3097f21bc8a0d40bd))
+* **stdlib:** Use Array length as default end in `Array.slice` function ([#1762](https://github.com/phated/grain2/issues/1762)) ([a698fdc](https://github.com/phated/grain2/commit/a698fdc55ef45e8b0d156d5bb3cacc9e21d758ac))
+* **stdlib:** Use String length as default end in `String.slice` function ([#1748](https://github.com/phated/grain2/issues/1748)) ([b7c41a6](https://github.com/phated/grain2/commit/b7c41a6421dd0392bfec9f1791d9314556af9318))
+
+
+### Bug Fixes
+
+* **compiler:** Disallow multiple `provide`s of the same value ([#1689](https://github.com/phated/grain2/issues/1689)) ([7ab7ddc](https://github.com/phated/grain2/commit/7ab7ddc1c7e9eae221edcf787b733ef7acf97904))
+* Fix String.ReplaceAll ([#1705](https://github.com/phated/grain2/issues/1705)) ([d3af004](https://github.com/phated/grain2/commit/d3af0049f6910b10065ddd72c46e5364fe53c4ff))
+* **stdlib:** Sys/File reading and writing operate on Bytes ([#1655](https://github.com/phated/grain2/issues/1655)) ([17cb28d](https://github.com/phated/grain2/commit/17cb28d25f4b1f2cf8943429136c863f66447675))
+* **stdlib:** Use correct casing for BigInt module name ([2ff9d9e](https://github.com/phated/grain2/commit/2ff9d9ec49c727778c6d0ee74219f746df8a11e2))
+
+
+### Miscellaneous Chores
+
+* **compiler:** Optimize type metadata loading ([#1741](https://github.com/phated/grain2/issues/1741)) ([a4519bc](https://github.com/phated/grain2/commit/a4519bc88d9fe12159495e995fcaa74834d5a361))
+* **compiler:** Require floats always have a digit on left & right of dot ([#1703](https://github.com/phated/grain2/issues/1703)) ([b657e1c](https://github.com/phated/grain2/commit/b657e1cf68d4b20bfb06d662b1fc8687836e5104))
+* **graindoc:** Remove section attribute ([#1681](https://github.com/phated/grain2/issues/1681)) ([e969ad7](https://github.com/phated/grain2/commit/e969ad75e017785d12decbbf87651bd8c7dd286d))
+* **stdlib:** Group mutable/immutable data structures ([#1652](https://github.com/phated/grain2/issues/1652)) ([f93afef](https://github.com/phated/grain2/commit/f93afef3785910ebbedcf780ce2d6109299c2e86))
+* **stdlib:** Remove `cons` and `empty` from Pervasives ([#1657](https://github.com/phated/grain2/issues/1657)) ([f6f02bc](https://github.com/phated/grain2/commit/f6f02bcb5a196f7f611ee6604f8585d429368314))
+* **stdlib:** Replace bigint/number arithmetic functions with operators ([#1742](https://github.com/phated/grain2/issues/1742)) ([cbd46ee](https://github.com/phated/grain2/commit/cbd46ee99654d066690f1eb13bde8d882abed80f))
+* **stdlib:** Replace Number.nan & Number.infinity constants with keywords ([#1618](https://github.com/phated/grain2/issues/1618)) ([b437c13](https://github.com/phated/grain2/commit/b437c131aedcc4395080179b8e0d41ff6b2c95b2))
+* **stdlib:** Update Buffer/Bytes to use new integer types ([#1704](https://github.com/phated/grain2/issues/1704)) ([d508e5a](https://github.com/phated/grain2/commit/d508e5af7d66e8419370000030ee40194052301f))
+* **stdlib:** Update Operator `uint` operator Names ([#1738](https://github.com/phated/grain2/issues/1738)) ([decb053](https://github.com/phated/grain2/commit/decb0533e87cb8d617e27c0f5470a24c502dcfab))
+
 ### [0.5.13](https://github.com/grain-lang/grain/compare/stdlib-v0.5.12...stdlib-v0.5.13) (2023-01-07)
 
 

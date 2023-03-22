@@ -1054,7 +1054,7 @@ Returns:
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>Support zipping arrays of different sizes</td></tr>
+<tr><td><code>0.6.0</code></td><td>Support zipping arrays of different sizes</td></tr>
 </tbody>
 </table>
 </details>
@@ -1196,7 +1196,7 @@ Returns:
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>Default `end` to the Array length</td></tr>
+<tr><td><code>0.6.0</code></td><td>Default `end` to the Array length</td></tr>
 </tbody>
 </table>
 </details>
@@ -1256,7 +1256,7 @@ Parameters:
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>Behavior changed from right-rotation to left-rotation</td></tr>
+<tr><td><code>0.6.0</code></td><td>Behavior changed from right-rotation to left-rotation</td></tr>
 </tbody>
 </table>
 </details>
@@ -1293,7 +1293,7 @@ let array = [> 1, 2, 3, 4, 5]; rotate(-1, arr); arr == [> 5, 1, 2, 3, 4]
 An immutable array implementation.
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1321,7 +1321,7 @@ Functions and constants included in the Array.Immutable module.
 #### Array.Immutable.**empty**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1341,7 +1341,7 @@ An empty array.
 #### Array.Immutable.**isEmpty**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1373,7 +1373,7 @@ Returns:
 #### Array.Immutable.**length**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1411,7 +1411,7 @@ length(fromList([1, 2, 3, 4, 5])) == 5
 #### Array.Immutable.**get**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1461,7 +1461,7 @@ get(-1, fromList([1, 2, 3, 4])) == 4
 #### Array.Immutable.**set**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1509,7 +1509,7 @@ set(1, 9, fromList([1, 2, 3, 4, 5])) == fromList([1, 9, 3, 4, 5])
 #### Array.Immutable.**append**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1550,7 +1550,7 @@ append(fromList([1, 2]), fromList([3, 4, 5])) == fromList([1, 2, 3, 4, 5])
 #### Array.Immutable.**concat**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1589,7 +1589,7 @@ concat([fromList([1, 2]), fromList([3, 4]), fromList([5, 6])]) == fromList([1, 2
 #### Array.Immutable.**init**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1630,7 +1630,7 @@ init(5, i => i + 3) == fromList([3, 4, 5, 6, 7])
 #### Array.Immutable.**make**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1670,7 +1670,7 @@ make(5, "foo") == fromList(["foo", "foo", "foo", "foo", "foo"])
 #### Array.Immutable.**forEach**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1697,7 +1697,7 @@ Parameters:
 #### Array.Immutable.**cycle**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1725,7 +1725,7 @@ Parameters:
 #### Array.Immutable.**map**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1759,7 +1759,7 @@ Returns:
 #### Array.Immutable.**reduce**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1805,7 +1805,7 @@ reduce((acc, x) => acc + x, 0, fromList([1, 2, 3])) == 6
 #### Array.Immutable.**reduceRight**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1851,7 +1851,7 @@ reduceRight((x, acc) => acc ++ x, "", fromList(["baz", "bar", "foo"])) == "fooba
 #### Array.Immutable.**flatMap**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1895,7 +1895,7 @@ flatMap(n => fromList([n, n + 1]), fromList([1, 3, 5])) == fromList([1, 2, 3, 4,
 #### Array.Immutable.**fromList**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1927,7 +1927,7 @@ Returns:
 #### Array.Immutable.**toList**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1959,7 +1959,7 @@ Returns:
 #### Array.Immutable.**filter**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -1994,7 +1994,7 @@ Returns:
 #### Array.Immutable.**every**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2028,7 +2028,7 @@ Returns:
 #### Array.Immutable.**some**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2062,7 +2062,7 @@ Returns:
 #### Array.Immutable.**reverse**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2094,7 +2094,7 @@ Returns:
 #### Array.Immutable.**contains**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2128,7 +2128,7 @@ Returns:
 #### Array.Immutable.**find**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2161,7 +2161,7 @@ Returns:
 #### Array.Immutable.**findIndex**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2194,7 +2194,7 @@ Returns:
 #### Array.Immutable.**product**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2230,7 +2230,7 @@ Returns:
 #### Array.Immutable.**count**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2263,7 +2263,7 @@ Returns:
 #### Array.Immutable.**unique**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2296,7 +2296,7 @@ Returns:
 #### Array.Immutable.**zip**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2336,7 +2336,7 @@ Returns:
 #### Array.Immutable.**zipWith**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2389,7 +2389,7 @@ zipWith((a, b) => a * b, fromList([1, 2, 3]), fromList([4, 5])) == fromList([4, 
 #### Array.Immutable.**unzip**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2422,7 +2422,7 @@ Returns:
 #### Array.Immutable.**join**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2455,14 +2455,14 @@ Returns:
 #### Array.Immutable.**slice**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
 <tr><td><code>0.5.4</code></td><td>Originally in `"immutablearray"` module</td></tr>
-<tr><td><code>next</code></td><td>Default `end` to the Array length</td></tr>
+<tr><td><code>0.6.0</code></td><td>Default `end` to the Array length</td></tr>
 </tbody>
 </table>
 </details>
@@ -2506,7 +2506,7 @@ slice(1, -1, fromList(['a', 'b', 'c'])) == fromList(['b'])
 #### Array.Immutable.**sort**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>
@@ -2542,7 +2542,7 @@ Returns:
 #### Array.Immutable.**rotate**
 
 <details>
-<summary>Added in <code>next</code></summary>
+<summary>Added in <code>0.6.0</code></summary>
 <table>
 <thead>
 <tr><th>version</th><th>changes</th></tr>

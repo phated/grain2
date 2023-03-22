@@ -426,7 +426,7 @@ String.split(" ", "Hello world") == [> "Hello", "world"]
 <tr><th>version</th><th>changes</th></tr>
 </thead>
 <tbody>
-<tr><td><code>next</code></td><td>Default `end` to the String length</td></tr>
+<tr><td><code>0.6.0</code></td><td>Default `end` to the String length</td></tr>
 </tbody>
 </table>
 </details>
