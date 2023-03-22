@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.6.0](https://github.com/phated/grain2/compare/cli-v0.5.13...cli-v0.6.0) (2023-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rework preopened directories ([#1656](https://github.com/phated/grain2/issues/1656))
+* **compiler:** Enable tail calls by default ([#1589](https://github.com/phated/grain2/issues/1589))
+* **compiler:** Module system ([#1584](https://github.com/phated/grain2/issues/1584))
+* Remove --parser-debug-level ([#1311](https://github.com/phated/grain2/issues/1311)) (#1447)
+
+### Features
+
+* **compiler:** Allow importing a memory ([#1661](https://github.com/phated/grain2/issues/1661)) ([3140ba2](https://github.com/phated/grain2/commit/3140ba249f47de8e66af236ddc681f4e9f481e1b))
+* **compiler:** Enable tail calls by default ([#1589](https://github.com/phated/grain2/issues/1589)) ([f6e5b00](https://github.com/phated/grain2/commit/f6e5b002475f62e04e9f1feb452ff8e9262dacbb))
+* **compiler:** Module system ([#1584](https://github.com/phated/grain2/issues/1584)) ([752da69](https://github.com/phated/grain2/commit/752da69057b2b06a1415710d6da93fbb948e8185))
+* Get RP to do something ([64246f8](https://github.com/phated/grain2/commit/64246f8f34a86bb0763bdf7a1611f6cd5b9e0669))
+* Rework preopened directories ([#1656](https://github.com/phated/grain2/issues/1656)) ([7d3006d](https://github.com/phated/grain2/commit/7d3006d86d423a0bb03a600c6bf9726efc8394b9))
+
+
+### Miscellaneous Chores
+
+* Remove --parser-debug-level ([#1311](https://github.com/phated/grain2/issues/1311)) ([#1447](https://github.com/phated/grain2/issues/1447)) ([f78587a](https://github.com/phated/grain2/commit/f78587a734538d66dfae94abbb7566b25810352b))
+
 ### [0.5.13](https://github.com/grain-lang/grain/compare/cli-v0.5.12...cli-v0.5.13) (2023-01-07)
 
 

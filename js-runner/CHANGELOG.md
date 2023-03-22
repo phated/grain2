@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.6.0](https://github.com/phated/grain2/compare/js-runner-v0.5.13...js-runner-v0.6.0) (2023-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rework preopened directories ([#1656](https://github.com/phated/grain2/issues/1656))
+* **compiler:** Rename `_grainEnv` to `_genv` ([#1607](https://github.com/phated/grain2/issues/1607))
+* **compiler:** Refactor enum constructors ([#1211](https://github.com/phated/grain2/issues/1211))
+
+### Features
+
+* **compiler:** Refactor enum constructors ([#1211](https://github.com/phated/grain2/issues/1211)) ([8d465b7](https://github.com/phated/grain2/commit/8d465b7cd73d9549eeb89c7d52083d592ebd66fd))
+* Get RP to do something ([64246f8](https://github.com/phated/grain2/commit/64246f8f34a86bb0763bdf7a1611f6cd5b9e0669))
+* Rework preopened directories ([#1656](https://github.com/phated/grain2/issues/1656)) ([7d3006d](https://github.com/phated/grain2/commit/7d3006d86d423a0bb03a600c6bf9726efc8394b9))
+
+
+### Miscellaneous Chores
+
+* **compiler:** Rename `_grainEnv` to `_genv` ([#1607](https://github.com/phated/grain2/issues/1607)) ([73c9499](https://github.com/phated/grain2/commit/73c94997c7bd08324398ea87498d2b498c5bf658))
+
 ### [0.5.13](https://github.com/grain-lang/grain/compare/js-runner-v0.5.12...js-runner-v0.5.13) (2023-01-07)
 
 
